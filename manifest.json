@@ -24,19 +24,18 @@
       "host_permissions":[
         "https://github.com/*",
         "https://api.github.com/*",
-        "https://practice.geeksforgeeks.org/*",
-        "https://www.geeksforgeeks.org/*"
+        "https://www.takeuforward.org/plus/*"
       ],
       "web_accessible_resources": [{
         "resources": ["scripts/extractCode.js","script/nodeDeletion.js"],
-        "matches": ["https://practice.geeksforgeeks.org/*","https://www.geeksforgeeks.org/*"]
+        "matches": ["https://www.takeuforward.org/*","https://www.takeuforward.org/plus/*"]
       }],
       "content_scripts": [
         {
           "matches": [
             "https://github.com/*",
-            "https://practice.geeksforgeeks.org/*",
-            "https://www.geeksforgeeks.org/*"
+            "https://www.takeuforward.org/plus/*",
+            "https://www.takeuforward.org/*"
           ],
           "js": [
             "scripts/localSetup.js",
