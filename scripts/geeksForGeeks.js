@@ -19,9 +19,8 @@ const uploadToGitHubRepository = (
   uploadFileName,
   sha,
   commitMessage,
-  problemDifficulty,
 ) => {
-  const uploadPathURL = `https://api.github.com/repos/${linkedRepository}/contents/${problemDifficulty}/${problemTitle}/${uploadFileName}`;
+  const uploadPathURL = `https://api.github.com/repos/${linkedRepository}/contents/${problemTitle}/${uploadFileName}`;
 
   let uploadData = {
     message: commitMessage,
@@ -53,14 +52,11 @@ const uploadToGitHubRepository = (
           }
           const githubFilePath = problemTitle + uploadFileName;
 
+          // MIGHT NUKE
           if (uploadFileName === 'README.md' && sha === null) {
             userStatistics.solved += 1;
-            userStatistics.school += difficulty === 'School' ? 1 : 0;
-            userStatistics.basic += difficulty === 'Basic' ? 1 : 0;
-            userStatistics.easy += difficulty === 'Easy' ? 1 : 0;
-            userStatistics.medium += difficulty === 'Medium' ? 1 : 0;
-            userStatistics.hard += difficulty === 'Hard' ? 1 : 0;
           }
+          // MIGHT NUKE
           userStatistics.sha[githubFilePath] = updatedSha;
           chrome.storage.local.set({ userStatistics }, () => {
             console.log(`${uploadFileName} - Commit Successful`,);
@@ -80,11 +76,8 @@ function uploadGitHub(
   problemName,
   uploadFileName,
   commitMessage,
-  problemDifficulty = undefined,
 ) {
-  if (problemDifficulty && problemDifficulty !== undefined) {
-    difficulty = problemDifficulty.trim();
-  }
+
 
   chrome.storage.local.get('githubAccessToken', (access_token) => {
     const accessToken = access_token.githubAccessToken;
@@ -111,7 +104,6 @@ function uploadGitHub(
                     uploadFileName,
                     sha,
                     commitMessage,
-                    difficulty,
                   );
               });
             }
@@ -139,14 +131,6 @@ function getProblemTitle() {
   const problemTitleElement = document.querySelector('[class^="problems_header_content__title"] > h3').innerText;
   if (problemTitleElement != null) {
     return problemTitleElement;
-  }
-  return '';
-}
-
-function getProblemDifficulty() {
-  const problemDifficultyElement = document.querySelectorAll('[class^="problems_header_description"]')[0].children[0].innerText;
-  if (problemDifficultyElement != null) {
-    return problemDifficultyElement;
   }
   return '';
 }
@@ -193,7 +177,6 @@ function getCompanyAndTopicTags(problemStatement) {
 const loader = setInterval(() => {
   let problemTitle = null;
   let problemStatement = null;
-  let problemDifficulty = null;
   let solutionLanguage = null;
   let solution = null;
 
@@ -213,14 +196,13 @@ const loader = setInterval(() => {
           clearInterval(submissionLoader);
           document.querySelector('.problems_header_menu__items__BUrou').click();
           problemTitle = getProblemTitle().trim();
-          problemDifficulty = getProblemDifficulty();
           problemStatement = getProblemStatement();
           solutionLanguage = getSolutionLanguage();
           console.log("Initialised Upload Variables");
 
           const probName = `${problemTitle}`;
           var questionUrl = window.location.href;
-          problemStatement = `<h2><a href="${questionUrl}">${problemTitle}</a></h2><h3>Difficulty Level : ${problemDifficulty}</h3><hr>${problemStatement}`;
+          problemStatement = `<h2><a href="${questionUrl}">${problemTitle}</a></h2><hr>${problemStatement}`;
           problemStatement = getCompanyAndTopicTags(problemStatement);
 
           if (solutionLanguage !== null) {
@@ -240,8 +222,7 @@ const loader = setInterval(() => {
                     btoa(unescape(encodeURIComponent(problemStatement))),
                     probName,
                     'README.md',
-                    "Create README - GfG to GitHub",
-                    problemDifficulty,
+                    "Create README - GfG to GitHub"
                   );
                 }
                 
@@ -257,8 +238,7 @@ const loader = setInterval(() => {
                         btoa(unescape(encodeURIComponent(solution))),
                         probName,
                         convertToKebabCase(problemTitle + solutionLanguage),
-                        "Added Solution - GfG to GitHub",
-                        problemDifficulty,
+                        "Added Solution - GfG to GitHub"
                       );
                     }
                     else{
@@ -266,8 +246,7 @@ const loader = setInterval(() => {
                         btoa(unescape(encodeURIComponent(solution))),
                         probName,
                         convertToKebabCase(problemTitle + solutionLanguage),
-                        "Updated Solution - GfG to GitHub",
-                        problemDifficulty,
+                        "Updated Solution - GfG to GitHub"
                       );
                     }
                   }, 1000);
