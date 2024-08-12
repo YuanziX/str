@@ -1,7 +1,6 @@
 const codeLanguage = {
-  C: '.c',
-  'C++': '.cpp',
-  'C#': '.cs',
+  Cpp: '.cpp',
+  'Cpp': '.cpp',
   Java: '.java',
   Python: '.py',
   Python3: '.py',
