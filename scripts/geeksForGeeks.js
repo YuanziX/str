@@ -180,9 +180,9 @@ const loader = setInterval(() => {
   let solutionLanguage = null;
   let solution = null;
 
-  if (window.location.href.includes('www.geeksforgeeks.org/problems',) || window.location.href.includes('practice.geeksforgeeks.org/problems',)) {
+  if (window.location.href.includes('https://takeuforward.org/plus/',)) {
 
-    const gfgSubmitButton = document.querySelector('[class^="ui button problems_submit_button"]');
+    const gfgSubmitButton = document.querySelector('[class^="rounded-md relative inline-flex items-center justify-center"]');   //TODO EDIT LATER
 
     gfgSubmitButton.addEventListener('click', function () {
       document.querySelector('.problems_header_menu__items__BUrou').click();
