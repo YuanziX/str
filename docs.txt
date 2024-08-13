@@ -1,3 +1,4 @@
 Scraping From tuf+:
 Code DIV class: <div class="view-lines monaco-mouse-cursor-text">
 Question DIV class: <div class="flex flex-col items-start no-scrollbar dark:text-zinc-300 font-dmSans premium-article p-4 w-full">
+GetSolutionLang (broken): <div class="relative p-2 rounded-lg">
