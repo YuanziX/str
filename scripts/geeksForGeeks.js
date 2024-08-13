@@ -1,5 +1,5 @@
 const codeLanguage = {
-  Cpp: '.cpp',
+  'C++': '.cpp',
   'Cpp': '.cpp',
   Java: '.java',
   Python: '.py',
@@ -103,6 +103,7 @@ function uploadGitHub(
                     uploadFileName,
                     sha,
                     commitMessage,
+
                   );
               });
             }
@@ -118,7 +119,7 @@ const convertToKebabCase = (uploadFileName) => {
 };
 
 function getSolutionLanguage() {
-  const languageElement = document.getElementsByClassName('divider text')[0].innerText;
+  const languageElement = document.getElementsByClassName('class="flex items-center w-full hover:bg-gray-50 hover:dark:bg')[0].innerText;
   const lang = languageElement.split('(')[0].trim();
   if (lang.length > 0 && codeLanguage[lang]) {
     return codeLanguage[lang];
@@ -127,7 +128,7 @@ function getSolutionLanguage() {
 }
 
 function getProblemTitle() {
-  const problemTitleElement = document.querySelector('[class^="problems_header_content__title"] > h3').innerText;
+  const problemTitleElement = document.querySelector('[class^="text-2xl font-bold"] > h3').innerText;
   if (problemTitleElement != null) {
     return problemTitleElement;
   }
@@ -135,7 +136,7 @@ function getProblemTitle() {
 }
 
 function getProblemStatement() {
-  const problemStatementElement = document.querySelector('[class^="problems_problem_content"]');
+  const problemStatementElement = document.querySelector('[class^="tab-content"]');
   return `${problemStatementElement.outerHTML}`;
 }
 
