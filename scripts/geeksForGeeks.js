@@ -119,7 +119,7 @@ const convertToKebabCase = (uploadFileName) => {
 };
 
 function getSolutionLanguage() {
-  const languageElement = document.getElementsByClassName('class="flex items-center w-full hover:bg-gray-50 hover:dark:bg')[0].innerText;
+  const languageElement = document.getElementsByClassName('flex items-center w-full hover:bg-gray-50 hover:dark:bg')[0].innerText;
   const lang = languageElement.split('(')[0].trim();
   if (lang.length > 0 && codeLanguage[lang]) {
     return codeLanguage[lang];
@@ -140,39 +140,39 @@ function getProblemStatement() {
   return `${problemStatementElement.outerHTML}`;
 }
 
-function getCompanyAndTopicTags(problemStatement) {
-  let tagHeading = document.querySelectorAll('.problems_tag_container__kWANg');
-  let tagContent = document.querySelectorAll(".content");
+// function getCompanyAndTopicTags(problemStatement) {
+//   let tagHeading = document.querySelectorAll('.problems_tag_container__kWANg');
+//   let tagContent = document.querySelectorAll(".content");
 
-  for (let i = 0; i < tagHeading.length; i++) {
-    if(tagHeading[i].innerText === 'Company Tags'){
-      tagContent[i].classList.add("active");
-      problemStatement = problemStatement.concat("<p><span style=font-size:18px><strong>Company Tags : </strong><br>");
-      let numOfTags = tagContent[i].childNodes[0].children.length;
-      for (let j = 0; j < numOfTags; j++) {
-        if (tagContent[i].childNodes[0].children[j].innerText !== null) {
-          const company = tagContent[i].childNodes[0].children[j].innerText;
-          problemStatement = problemStatement.concat("<code>" + company + "</code>&nbsp;");  
-        }
-      }
-      tagContent[i].classList.remove("active");
-    }
-    else if(tagHeading[i].innerText === 'Topic Tags'){
-      tagContent[i].classList.add("active");
-      problemStatement = problemStatement.concat("<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br>");
-      let numOfTags = tagContent[i].childNodes[0].children.length;
-      for (let j = 0; j < numOfTags; j++) {
-        if (tagContent[i].childNodes[0].children[j].innerText !== null) {
-          const company = tagContent[i].childNodes[0].children[j].innerText;
-          problemStatement = problemStatement.concat("<code>" + company + "</code>&nbsp;");  
-        }
-      }
-      tagContent[i].classList.remove("active");
-    }
+//   for (let i = 0; i < tagHeading.length; i++) {
+//     if(tagHeading[i].innerText === 'Company Tags'){
+//       tagContent[i].classList.add("active");
+//       problemStatement = problemStatement.concat("<p><span style=font-size:18px><strong>Company Tags : </strong><br>");
+//       let numOfTags = tagContent[i].childNodes[0].children.length;
+//       for (let j = 0; j < numOfTags; j++) {
+//         if (tagContent[i].childNodes[0].children[j].innerText !== null) {
+//           const company = tagContent[i].childNodes[0].children[j].innerText;
+//           problemStatement = problemStatement.concat("<code>" + company + "</code>&nbsp;");  
+//         }
+//       }
+//       tagContent[i].classList.remove("active");
+//     }
+//     else if(tagHeading[i].innerText === 'Topic Tags'){
+//       tagContent[i].classList.add("active");
+//       problemStatement = problemStatement.concat("<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br>");
+//       let numOfTags = tagContent[i].childNodes[0].children.length;
+//       for (let j = 0; j < numOfTags; j++) {
+//         if (tagContent[i].childNodes[0].children[j].innerText !== null) {
+//           const company = tagContent[i].childNodes[0].children[j].innerText;
+//           problemStatement = problemStatement.concat("<code>" + company + "</code>&nbsp;");  
+//         }
+//       }
+//       tagContent[i].classList.remove("active");
+//     }
     
-  }
-  return problemStatement;
-}
+//   }
+//   return problemStatement;
+// }
 
 const loader = setInterval(() => {
   let problemTitle = null;
@@ -203,7 +203,7 @@ const loader = setInterval(() => {
           const probName = `${problemTitle}`;
           var questionUrl = window.location.href;
           problemStatement = `<h2><a href="${questionUrl}">${problemTitle}</a></h2><hr>${problemStatement}`;
-          problemStatement = getCompanyAndTopicTags(problemStatement);
+          // problemStatement = getCompanyAndTopicTags(problemStatement);
 
           if (solutionLanguage !== null) {
             chrome.storage.local.get('userStatistics', (statistics) => {
