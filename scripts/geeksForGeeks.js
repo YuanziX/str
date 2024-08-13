@@ -185,16 +185,16 @@ const loader = setInterval(() => {
     const gfgSubmitButton = document.querySelector('[class^="rounded-md relative inline-flex items-center justify-center"]');   //TODO EDIT LATER
 
     gfgSubmitButton.addEventListener('click', function () {
-      document.querySelector('.problems_header_menu__items__BUrou').click();
+      document.querySelector('.flex list-none overflow-x-auto pt-1 flex-row').click(); //TODO EDIT LATER
       successfulSubmissionFlag = true;
 
       const submissionLoader = setInterval(() => {
-        const submissionResult = document.querySelectorAll('[class^="problems_content"]')[0].innerText;
-        if (submissionResult.includes('Problem Solved Successfully') && successfulSubmissionFlag) {
+        const submissionResult = document.querySelectorAll('[class^="flex  flex-col items-start  no-scrollbar dark:text-zinc-300 font-dmSans premium-article p-4 w-full"]')[0].innerText;
+        if (submissionResult.includes('Problem Solved Successfully')  && successfulSubmissionFlag) { //if (submissionResult.includes('Problem Solved Successfully') EDIT THIS LATER
           successfulSubmissionFlag = false;
           clearInterval(loader);
           clearInterval(submissionLoader);
-          document.querySelector('.problems_header_menu__items__BUrou').click();
+          document.querySelector('.flex list-none overflow-x-auto pt-1 flex-row').click();
           problemTitle = getProblemTitle().trim();
           problemStatement = getProblemStatement();
           solutionLanguage = getSolutionLanguage();
